@@ -1,17 +1,18 @@
-from flask import Flask
+from flask import Flask, render_template
+import urllib.request, json
+import os
+
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return '<h1>Main Dashboard</h1>'
+@app.route("/")
+def get_movies():
+    url = "https://api.coingecko.com/api/v3/ping"
 
-@app.route('/api')
-def API():
-    return '<h1>This will be the API request page</h1>'
+    response = urllib.request.urlopen(url)
+    data = response.read()
+    #dict = json.loads(data)
 
-@app.route('/test/<name>')
-def test(name):
-    return '<h1>This is a test, you inputed {}</h1>'.format(name)
+    return data
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
