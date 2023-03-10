@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def get_movies():
-    url = "https://api.coingecko.com/api/v3/ping"
+    #url = "https://api.coingecko.com/api/v3/ping"
+    url ="https://api.coingecko.com/api/v3/coins/list"
 
     response = urllib.request.urlopen(url)
     data = response.read()
